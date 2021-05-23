@@ -20,4 +20,11 @@ setup(
         ],
     include_package_data=True,
     zip_safe=False,
+    extras_require={
+        'dev': [
+            'pytest>=3.5.0',
+            'setuptools_rust~=0.11.0'
+        ]
+    }
 )
+
