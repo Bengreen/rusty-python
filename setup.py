@@ -18,6 +18,14 @@ setup(
     rust_extensions=[
         RustExtension("setuptools_rust_starter._setuptools_rust_starter", binding=Binding.PyO3)
         ],
+    install_requires=[
+        "Click"
+    ],
+    entry_points={
+        'console_scripts': [
+            'yourscript = setuptools_rust_starter.yourscript:cli',
+        ],
+    },
     include_package_data=True,
     zip_safe=False,
     extras_require={
