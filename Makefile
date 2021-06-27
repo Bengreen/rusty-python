@@ -8,6 +8,7 @@ CARGO:=cargo
 
 venv:
 	python3 -m venv venv
+	${PIP} install wheel
 
 list: venv
 	${PIP} list

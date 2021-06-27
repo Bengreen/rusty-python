@@ -19,7 +19,8 @@ setup(
         RustExtension("setuptools_rust_starter._setuptools_rust_starter", binding=Binding.PyO3)
         ],
     install_requires=[
-        "Click"
+        "asyncclick",
+        "anyio"
     ],
     entry_points={
         'console_scripts': [

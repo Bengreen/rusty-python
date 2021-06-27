@@ -1,4 +1,5 @@
-import click
+import asyncio
+import asyncclick as click
 from setuptools_rust_starter import ExampleClass
 
 
@@ -8,11 +9,12 @@ def cli():
 
 
 @click.command()
-def hello():
+async def hello():
     """Example script."""
     click.echo('Hello World!')
     example = ExampleClass(value=12)
 
+    await asyncio.sleep(3.0)
     click.echo(example.greetme())
 
 cli.add_command(hello)
@@ -21,4 +23,4 @@ cli.add_command(hello)
 
 
 if __name__ == '__main__':
-    cli()
+    cli(_anyio_backend="asyncio")

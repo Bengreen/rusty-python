@@ -21,6 +21,10 @@ impl ExampleClass {
     pub fn greetme(&self) -> &'static str {
         "Hello, world!"
     }
+
+    pub fn personalgreet(&self, name: &str)-> PyResult<String> {
+        Ok(format!("Hello there {}", name))
+    }
 }
 
 #[pymodule]
