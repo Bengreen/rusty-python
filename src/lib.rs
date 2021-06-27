@@ -17,6 +17,10 @@ impl ExampleClass {
     pub fn new(value: i32) -> Self {
         ExampleClass { value }
     }
+
+    pub fn greetme(&self) -> &'static str {
+        "Hello, world!"
+    }
 }
 
 #[pymodule]

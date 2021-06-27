@@ -10,3 +10,5 @@ def test_python_class() -> None:
 def test_example_class() -> None:
     example = ExampleClass(value=11)
     assert example.value == 11
+    assert example.greetme() == 'Hello, world!'
+
