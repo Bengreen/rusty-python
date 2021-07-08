@@ -22,3 +22,13 @@ Alternatively, install tox and run the tests inside an isolated environment:
 ```shell
 tox -e py
 ```
+
+
+When building on osx you need to add the following to `~/.cargo/config`
+
+    [target.x86_64-apple-darwin]
+    rustflags = [
+    "-C", "link-arg=-undefined",
+    "-C", "link-arg=dynamic_lookup",
+    ]
+

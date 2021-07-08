@@ -16,3 +16,4 @@ pyo3 = { version = "0.13.2", features = ["extension-module"] }
 [lib]
 name = "setuptools_rust_starter"
 crate-type = ["cdylib"]
+
