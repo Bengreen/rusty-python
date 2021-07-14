@@ -9,12 +9,11 @@ edition = "2018"
 pyo3 = { version = "0.13.2", features = ["extension-module"] }
 # pyo3-asyncio = { version = "0.13", features = ["attributes", "async-std-runtime"] }
 pyo3-asyncio = { git="https://github.com/awestlake87/pyo3-asyncio", branch="init-fixes", features = ["attributes", "async-std-runtime"] }
+aho-corasick = "0.7"
 
 async-std = "1.9"
 
-#[dependencies.pyo3]
-# path = "../../"
-# features = ["extension-module"]
+
 
 [lib]
 name = "setuptools_rust_starter"

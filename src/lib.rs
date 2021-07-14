@@ -1,6 +1,8 @@
 use pyo3::types::PyDict;
 mod submodule;
 use submodule::*;
+mod ahoc;
+use ahoc::*;
 use std::time::Duration;
 use async_std::task;
 // use pyo3_asyncio::async_std::into_coroutine;
@@ -70,12 +72,14 @@ fn _setuptools_rust_starter(py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(rust_sleep1, m)?)?;
     m.add_class::<ExampleClass>()?;
     m.add_wrapped(wrap_pymodule!(submodule))?;
+    m.add_wrapped(wrap_pymodule!(ahoc))?;
 
     // Inserting to sys.modules allows importing submodules nicely from Python
     // e.g. from setuptools_rust_starter.submodule import SubmoduleClass
     let sys = PyModule::import(py, "sys")?;
     let sys_modules: &PyDict = sys.getattr("modules")?.downcast()?;
     sys_modules.set_item("setuptools_rust_starter.submodule", m.getattr("submodule")?)?;
+    sys_modules.set_item("setuptools_rust_starter.ahoc", m.getattr("ahoc")?)?;
 
     Ok(())
 }
