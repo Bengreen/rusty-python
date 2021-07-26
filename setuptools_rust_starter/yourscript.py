@@ -29,8 +29,9 @@ async def test():
 
     roy = ah.test_array(['abc', 'def'])
 
-    bob = ah.test_arraycount(['abc', 'def'])
+    # bob = ah.test_arraycount(['abc', 'def'])
 
+    bob = [12,334]
     click.echo(f'I am now {ben} and of size {roy} and {bob}')
 
 
