@@ -4,8 +4,8 @@ use submodule::*;
 mod ahoc;
 use ahoc::*;
 use std::time::Duration;
-use async_std::task;
-// use pyo3_asyncio::async_std::into_coroutine;
+use tokio;
+
 
 use pyo3::{prelude::*, wrap_pyfunction, wrap_pymodule};
 
@@ -33,14 +33,10 @@ impl ExampleClass {
 }
 
 
-// async fn rust_sleep() {
-//     async_std::task::sleep(Duration::from_secs(1)).await;
-// }
-
 #[pyfunction]
 fn foo<'p>(py: Python<'p>) -> PyResult<&'p PyAny> {
-    pyo3_asyncio::async_std::future_into_py(py, async move {
-        task::sleep(Duration::from_secs(1)).await;
+    pyo3_asyncio::tokio::future_into_py(py, async move {
+        tokio::time::sleep(Duration::from_secs(1)).await;
         Python::with_gil(|py: Python| Ok(py.None()))
     })
 }
@@ -49,23 +45,22 @@ fn foo<'p>(py: Python<'p>) -> PyResult<&'p PyAny> {
 fn sleep_for<'p>(py: Python<'p>, secs: &'p PyAny) -> PyResult<&'p PyAny> {
     let secs = secs.extract()?;
 
-    pyo3_asyncio::async_std::future_into_py(py, async move {
-        task::sleep(Duration::from_secs(secs)).await;
+    pyo3_asyncio::tokio::future_into_py(py, async move {
+        tokio::time::sleep(Duration::from_secs(secs)).await;
         Python::with_gil(|py| Ok(py.None()))
     })
 }
 
 #[pyfunction]
 fn rust_sleep1<'p>(py: Python<'p>) -> PyResult<&'p PyAny> {
-    pyo3_asyncio::async_std::future_into_py(py, async {
-        async_std::task::sleep(std::time::Duration::from_secs(1)).await;
+    pyo3_asyncio::tokio::future_into_py(py, async {
+        tokio::time::sleep(std::time::Duration::from_secs(1)).await;
         Ok(Python::with_gil(|py| py.None()))
     })
 }
 
 #[pymodule]
 fn _setuptools_rust_starter(py: Python, m: &PyModule) -> PyResult<()> {
-    // pyo3_asyncio::try_init(py)?;
 
     m.add_function(wrap_pyfunction!(foo, m)?)?;
     m.add_function(wrap_pyfunction!(sleep_for, m)?)?;

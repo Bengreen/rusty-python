@@ -37,4 +37,4 @@ status:
 	@${CARGO} --version
 
 test: dev-install
-	@${PYTEST}
+	@${PYTEST} tests
