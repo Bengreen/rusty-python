@@ -32,7 +32,8 @@ setup(
     extras_require={
         'dev': [
             'pytest>=3.5.0',
-            'setuptools_rust~=0.12.0',
+            'setuptools-rust @ git+https://github.com/PyO3/setuptools-rust',
+            # 'setuptools_rust~=0.12.0',
             'pytest-aiohttp',
         ]
     }

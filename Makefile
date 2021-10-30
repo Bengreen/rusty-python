@@ -7,7 +7,7 @@ PYTEST:=venv/bin/pytest
 CARGO:=cargo
 
 venv:
-	python3 -m venv venv
+	/opt/homebrew/bin/python3 -m venv venv
 	${PIP} install wheel
 
 list: venv
@@ -17,8 +17,8 @@ clean:
 	@rm -rf venv
 	@rm -rf *.egg-info
 	@rm -rf .pytest_cache
-	find -iname "*.pyc" -delete
-	find -iname "__pycache__" -delete
+	find . -iname "*.pyc" -delete
+	find . -iname "__pycache__" -delete
 	${CARGO} clean
 
 build:
